@@ -1,0 +1,14 @@
+numpy
+pyopengl
+pyglet
+opencv-python
+matplotlib
+scipy
+pillow
+matplotlib
+jupyter
+scikit-learn
+deepface
+ipython
+tensorflow
+keras

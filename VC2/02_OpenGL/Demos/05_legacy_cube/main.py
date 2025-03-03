@@ -69,5 +69,3 @@ def main():
     # Enter the GLUT main loop.
     glutMainLoop()
     
-if __name__ == "__main__":
-    main()
