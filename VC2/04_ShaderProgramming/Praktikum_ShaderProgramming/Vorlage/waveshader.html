@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script src="libs/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="libs/shaderloader/ShaderLoader.min.js" type="text/javascript" charset="utf-8"></script>
+    <script data-src="shader/wave.vert" type="x-shader/x-vertex" data-name="wave"></script>
+    <script data-src="shader/wave.frag" type="x-shader/x-fragment" data-name="wave"></script>
+    <style>
+      html{
+	height: 100%;
+      }
+      
+      body{
+	height: 100%;
+	margin: 0px;
+      }
+      
+      #viewer{
+	height: 100%;
+	width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="viewer"></div>
+    <script type="module" src="/waveshader.js"></script>
+  </body>
+</html>
