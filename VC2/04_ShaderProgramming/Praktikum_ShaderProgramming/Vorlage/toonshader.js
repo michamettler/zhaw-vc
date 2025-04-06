@@ -63,7 +63,10 @@ function addHelpers(){
 function drawScene(){
     var shaderMaterial = new THREE.ShaderMaterial({
         vertexShader:   toon_vs,
-        fragmentShader: toon_fs
+        fragmentShader: toon_fs,
+        uniforms: {
+            lightDirection: { value: new THREE.Vector3(0.0, 1.0, 1.0).normalize() }
+        }
     });
 
     torus = new THREE.Mesh(new THREE.TorusGeometry( 2, 0.5, 16, 50 ), shaderMaterial);
