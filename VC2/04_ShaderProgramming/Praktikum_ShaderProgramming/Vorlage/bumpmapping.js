@@ -68,10 +68,16 @@ function addHelpers(){
 
 function drawScene(){
 
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/mur_Ambiant.bmp');
+
   // PLANE WITH TEXTURE
   var textureMaterial = new THREE.ShaderMaterial({
        vertexShader:   bump_texture_vs,
-       fragmentShader: bump_texture_fs
+       fragmentShader: bump_texture_fs,
+       uniforms: {
+        tex: { value: texture }
+      }
    });
 
   texturePlane = new THREE.Mesh(new THREE.PlaneGeometry(15, 15, 100, 100), textureMaterial);
