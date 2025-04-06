@@ -12,9 +12,9 @@ in vec3 vViewDirTS; // Kameravektor (Tangent Space)
 
 void main(void)
 {
-  vec3 baseColor = texture(textureMap, vUv).rgb;
+  vec3 baseColor = texture2D(textureMap, vUv).rgb;
 
-  vec3 norm = texture(normalMap, vUv).xyz;
+  vec3 norm = texture2D(normalMap, vUv).xyz;
   norm = normalize(norm * 2.0 - 1.0);
 
   vec3 light = vLightDirTS;

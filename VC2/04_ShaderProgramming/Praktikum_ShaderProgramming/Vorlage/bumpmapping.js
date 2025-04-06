@@ -71,6 +71,7 @@ function drawScene(){
   const textureLoader = new THREE.TextureLoader();
   const textureMap = textureLoader.load('textures/mur_Ambiant.bmp');
   const normalMap = textureLoader.load('textures/mur_NormalMap.bmp');
+  const heightMap = textureLoader.load('textures/mur_Hauteur.bmp');
 
   // PLANE WITH TEXTURE
   var textureMaterial = new THREE.ShaderMaterial({
@@ -107,7 +108,19 @@ function drawScene(){
   // PLANE WITH PARALLAX MAP
   var parallaxMaterial = new THREE.ShaderMaterial({
        vertexShader:   bump_parallax_vs,
-       fragmentShader: bump_parallax_fs
+       fragmentShader: bump_parallax_fs,
+       uniforms: {
+        textureMap: { type: 't', value: textureMap },
+        heightMap: { type: 't', value: heightMap },
+        normalMap: { type: 't', value: normalMap },
+        p_a: { type: 'f', value: 1 },
+        I_d: { type: 'f', value: 0.5 },
+        I_sp: { type: 'f', value: 0.8 },
+        shininess: { type: 'f', value: 32 },
+        lightPosition: { type: 'v3', value: new THREE.Vector3(0, 0, 5) },
+        scale: { type: 'f', value: 0.04 },
+        bias: { type: 'f', value: -0.02 },
+      }
    });
   normalPlane = new THREE.Mesh(new THREE.PlaneGeometry(15, 15, 100, 100), parallaxMaterial);
   normalPlane.position.set(20,0,0);
