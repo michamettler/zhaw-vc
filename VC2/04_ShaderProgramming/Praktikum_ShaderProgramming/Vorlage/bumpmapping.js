@@ -69,14 +69,15 @@ function addHelpers(){
 function drawScene(){
 
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/mur_Ambiant.bmp');
+  const textureMap = textureLoader.load('textures/mur_Ambiant.bmp');
+  const normalMap = textureLoader.load('textures/mur_NormalMap.bmp');
 
   // PLANE WITH TEXTURE
   var textureMaterial = new THREE.ShaderMaterial({
        vertexShader:   bump_texture_vs,
        fragmentShader: bump_texture_fs,
        uniforms: {
-        tex: { value: texture }
+        textureMap: { value: textureMap }
       }
    });
 
@@ -87,7 +88,16 @@ function drawScene(){
   // PLANE WITH NORMAL MAP
   var normalMaterial = new THREE.ShaderMaterial({
        vertexShader:   bump_normal_vs,
-       fragmentShader: bump_normal_fs
+       fragmentShader: bump_normal_fs,
+       uniforms: {
+        textureMap: { type: 't', value: textureMap },
+        normalMap: { type: 't', value: normalMap },
+        p_a: { type: 'f', value: 1 },
+        I_d: { type: 'f', value: 0.5 },
+        I_sp: { type: 'f', value: 0.8 },
+        shininess: { type: 'f', value: 32 },
+        lightPosition: { type: 'v3', value: new THREE.Vector3(0, 0, 5) },
+      }
    });
 
   heightPlane = new THREE.Mesh(new THREE.PlaneGeometry(15, 15, 100, 100), normalMaterial);
