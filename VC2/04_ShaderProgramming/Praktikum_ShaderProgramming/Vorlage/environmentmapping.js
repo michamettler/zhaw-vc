@@ -8,6 +8,8 @@ var env_vs, env_fs;
 
 var viewerWidth, viewerHeight;
 
+var cubeCamera;
+
 $(window).load(function(){
   SHADER_LOADER.load(
     function (data)
@@ -80,17 +82,24 @@ function addLights(){
 
 function drawScene(){
   const cubeRenderTarget = new THREE.WebGLCubeRenderTarget( 512, { generateMipmaps: true, minFilter: THREE.LinearMipmapLinearFilter } );
+  cubeCamera = new THREE.CubeCamera(0.1, 1000, cubeRenderTarget);
   
   var shaderMaterial = new THREE.ShaderMaterial({
        vertexShader:   env_vs,
-       fragmentShader: env_fs
+       fragmentShader: env_fs,
+       uniforms: {
+         envMap: { value: cubeCamera.renderTarget.texture  },
+         lightPositionWS: { value: new THREE.Vector3(1.0, -0.5, 1.0) },
+         mixRatio: { value: 0.1 },
+         baseColor: { value: new THREE.Color(0.5, 0.5, 0.5) }
+       }
    });
 
   object = new THREE.Mesh(new THREE.SphereGeometry( 5, 64, 64 ), shaderMaterial);
   object.scale.set(1,1,1);
   object.position.set(10, 5, 10);
   scene.add( object );
-  
+
   drawReflectedObjects();
   drawSkybox();
 }
@@ -146,5 +155,11 @@ function render() {
   
   object.position.z = Math.cos(elapsed) * 25;
   object.position.x = Math.sin(elapsed) * 25;
+
+  object.visible = false;
+  cubeCamera.position.copy(object.position);
+  cubeCamera.update(renderer, scene);
+  object.visible = true;
+
   renderer.render(scene, camera);
 }
