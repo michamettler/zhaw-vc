@@ -8,7 +8,7 @@ import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
 img1 = cv.imread('./VC2/07_SIFT/scene.pgm',cv.IMREAD_GRAYSCALE)   # queryImage
-img2 = cv.imread('./VC2/07_SIFT/basmati.pgm',cv.IMREAD_GRAYSCALE) # trainImage
+img2 = cv.imread('./VC2/07_SIFT/book.pgm',cv.IMREAD_GRAYSCALE) # trainImage
 
 # Initiate SIFT detector
 sift = cv.SIFT_create()
