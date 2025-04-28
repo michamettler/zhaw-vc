@@ -7,11 +7,11 @@
 import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
-img1 = cv.imread('scene.pgm',cv.IMREAD_GRAYSCALE)   # queryImage
-img2 = cv.imread('basmati.pgm',cv.IMREAD_GRAYSCALE) # trainImage
+img1 = cv.imread('./VC2/07_SIFT/scene.pgm',cv.IMREAD_GRAYSCALE)   # queryImage
+img2 = cv.imread('./VC2/07_SIFT/basmati.pgm',cv.IMREAD_GRAYSCALE) # trainImage
 
 # Initiate SIFT detector
-sift = cv.xfeatures2d.SIFT_create()
+sift = cv.SIFT_create()
 # find the keypoints and descriptors with SIFT
 kp1, des1 = sift.detectAndCompute(img1,None)
 kp2, des2 = sift.detectAndCompute(img2,None)
