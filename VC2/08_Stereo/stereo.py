@@ -23,8 +23,8 @@ def write_ply(fn, verts, colors):
 
 # use your own images and/or use some prerecorded stereo pairs:
 # http://vision.middlebury.edu/stereo/data/
-imgL = cv.imread('tsukuba_l.png',0)
-imgR = cv.imread('tsukuba_r.png',0)
+imgL = cv.imread('./VC2/08_Stereo/tsukuba_l.png',0)
+imgR = cv.imread('./VC2/08_Stereo/tsukuba_r.png',0)
 
 #adjust numDisparity and blockSize for your images!
 stereo = cv.StereoBM_create(numDisparities=64, blockSize=15)
